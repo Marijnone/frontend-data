@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:800');
+
+body {
+    background: #d9f4fd;
+}
+
+h1,
+h2 {
+    font-family: 'Raleway';
+    color: black;
+}
+
+p {
+    font-family: system-ui;
+}
+
+.shelf {
+    position: absolute;
+    top: 13.5em;
+    fill: white;
+}
