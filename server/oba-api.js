@@ -7,9 +7,7 @@ const chalk = require('chalk')
 const convert = require('xml-to-json-promise')
 
 module.exports = class api {
-  constructor(options) {
-    limitPages: 5
-  }
+  constructor(options) {}
 
   getUrls(years) {
     const base = 'https://zoeken.oba.nl/api/v1/search/'
@@ -20,14 +18,14 @@ module.exports = class api {
     function requestYear(year) {
       const all = []
       let page = 1
-      let maxRequest = 2
+      let maxRequest = 3
 
       return send()
-
+      //genre = q=genre:thriller
       function send() {
         return axios
           .get(
-            `${base}?authorization=${publicKey}&q=book&facet=pubYear(${year})&refine=true&page=${page}&pagesize=20`
+            `${base}?authorization=${publicKey}&q=genre:thriller&facet=pubYear(${year})&refine=true&page=${page}&pagesize=20`
           )
           .then(res => res.data)
           .then(convert.xmlDataToJSON)
