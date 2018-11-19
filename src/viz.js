@@ -1,9 +1,10 @@
-d3.json('./json/json.json').then(function (data) {
+d3.json('./json/data.json').then(function (data) {
 
-    var speceficAuthors = ["Charles Dickons", "Mark Twain", "Stephen King"]
+    var speceficAuthors = ["Charles Dickons", "Mark Twain", "Stephen King", "Dan Brown", "Stieg Larsson"]
 
 
     const lessBooks = d3.shuffle(data).slice(0, 15)
+
 
     const filteredByAuthors = d3.nest().key(book => {
         return book.author.fullname
@@ -14,15 +15,43 @@ d3.json('./json/json.json').then(function (data) {
             console.log('GEVONDEN')
             return {
                 author
+
             }
         }
         return
     })
+    // filtered.filter(function (d) { return d.publication, console.log(d.publication) });
+    console.log(filtered);
 
-    const maxYear = d3.max(lessBooks, d => d.publication)
-    const minYear = d3.min(lessBooks, d => d.publication)
 
-    console.log(filtered)
+
+
+
+
+
+    const maxYear = d3.max(getYearValue(filtered))
+    const minYear = d3.min(getYearValue(filtered))
+
+    function getYearValue(d) {
+        let years = []
+        d.map(d => {
+            if (d.values.length > 1) {
+                d.values.map(books => years.push(books.publication.year))
+            } else {
+                years.push(d.values[0].publication.year)
+            }
+
+        })
+
+        return years
+    }
+
+    console.log(maxYear, minYear)
+
+    // console.log(minYear)
+    // const minYear = (filtered, d => d.values.length <= 1 ?  d.values[0].publication.year :  d.values.map(books> books.publication.year))
+
+
 
     var margin = {
         top: 80,
@@ -54,38 +83,33 @@ d3.json('./json/json.json').then(function (data) {
         .tickFormat(d3.format('y'))
         .ticks(maxYear - minYear)
     axisGroup.call(axis);
+    console.log(filtered);
 
     svg.selectAll("rects")
-        .data(lessBooks)
+        .data(filtered)
         .enter()
         .append("rect")
         .attr("width", 15)
         .attr("height", 15)
         .attr("y", -15)
-        .attr("x", book => {
-            return scale(book.publication)
-            console.log(book.publication);
-
-        })
+        .attr("x", book =>
+            book.values <= 1 ? scale(book.values[0].publication.year) : book.values.map(books => scale(books.publication.year))
+            // book.values ? scale(book.values[0].publication.year) : console.log("This book has no value: ", book)
+        )
         .style("fill", "red")
 
+    // let filteredBooks = filtered.map(filtered => {
+    //     // console.log(filteredBooks);
 
+    //     return {
+    //         year: books.publication.year,
+    //         author: filteredAuthors,
+    //         gender: books.author.gender,
+    //         pages: books.characteristics.pages
 
+    //     }
 
-
-
-    let filteredBooks = filtered.map(filtered => {
-        console.log(filteredBooks);
-
-        return {
-            year: books.publication.year,
-            author: filteredAuthors,
-            gender: books.author.gender,
-            pages: books.characteristics.pages
-
-        }
-
-    })
+    // })
 
     return
 
