@@ -24,11 +24,6 @@ d3.json('./json/data.json').then(function (data) {
     console.log(filtered);
 
 
-
-
-
-
-
     const maxYear = d3.max(getYearValue(filtered))
     const minYear = d3.min(getYearValue(filtered))
 
@@ -82,22 +77,59 @@ d3.json('./json/data.json').then(function (data) {
         .scale(scale)
         .tickFormat(d3.format('y'))
         .ticks(maxYear - minYear)
-    axisGroup.call(axis);
-    console.log(filtered);
+    axisGroup.call(axis)
 
-    svg.selectAll("rects")
-        .data(filtered)
-        .enter()
-        .append("rect")
-        .attr("width", 15)
-        .attr("height", 15)
-        .attr("y", -15)
-        .attr("x", book =>
-            book.values <= 1 ? scale(book.values[0].publication.year) : book.values.map(books => scale(books.publication.year))
-            // book.values ? scale(book.values[0].publication.year) : console.log("This book has no value: ", book)
-        )
-        .style("fill", "red")
+    // svg.selectAll("rects")
+    //     .data(filtered)
+    //     .enter()
+    //     .append("rect")
+    //     .attr("width", 15)
+    //     .attr("height", 15)
+    //     .attr("y", -15)
+    //     .attr("x", book =>
+    //         // book.values.length <= 1 ? scale(book.values[0].publication.year) : book.values.map(books => scale(books.publication.year))
+    //         book.values ? scale(book.values[0].publication.year) : console.log("This book has no value: ", book)
+    //     )
+    //     .style("fill", "red")
 
+    //Make y lines to plot books to
+
+
+
+    filtered.forEach((author, index) => {
+        plotValues(author, index)
+        if (index === 0) {
+
+        } else {
+            svg.append("g")
+                .attr('transform', 'translate(0,' + ((index * 100) + 5) + ')')
+                .call(d3.axisBottom() // v4
+                    .scale(scale)
+                    .ticks(0)
+                )
+        }
+
+    })
+
+    function plotValues(author, index) {
+        console.log(author.values)
+
+        svg.selectAll("rects")
+            .data(author.values)
+            .enter()
+            .append("rect")
+            .attr("width", 15)
+            .attr("height", 15)
+            .attr("y", (-10 + (index * 100)))
+            .attr("x", book => {
+                console.log(book.publication.year)
+                return scale(book.publication.year)
+            }
+            )
+
+            .style("fill", "red")
+
+    }
     // let filteredBooks = filtered.map(filtered => {
     //     // console.log(filteredBooks);
 
