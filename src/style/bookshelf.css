@@ -2,6 +2,7 @@
 
 body {
     background: #d9f4fd;
+    margin: 0;
 }
 
 h1,
@@ -18,4 +19,8 @@ p {
     position: absolute;
     top: 13.5em;
     fill: white;
+}
+
+svg {
+    overflow: visible;
 }
