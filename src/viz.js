@@ -52,7 +52,7 @@ d3.json('./json/data.json').then(function (data) {
         top: 80,
         right: 50,
         bottom: 100,
-        left: 50
+        left: 80
     }
 
     const width = window.innerWidth - margin.left - margin.right
@@ -81,7 +81,7 @@ d3.json('./json/data.json').then(function (data) {
         .ticks(maxYear - minYear)
     axisGroup.call(axis)
 
-    // Gridline
+    // Gridline 
     const gridlines = d3.axisTop()
         .scale(scale)
         .tickFormat(d3.format("y"))
@@ -114,60 +114,32 @@ d3.json('./json/data.json').then(function (data) {
     function plotValues(author, index) {
         // console.log(author.values)
 
+
         svg.selectAll("rects")
             .data(author.values)
             .enter()
-            .append("rect")
-            .attr("width", 15)
-            .attr("height", 20)
-            .attr("y", ((height - (index * 100))))
+            .append("svg:image")
+            .attr("width", 50)
+            .attr("height", 50)
+            .attr("y", ((height - (index * 100 + 50))))
             .attr("x", book => {
                 // console.log(book.publication.year)
                 return scale(book.publication.year)
             }
             )
+            .attr('xlink:href', d => {
+                console.log(d.images[0])
+                return d.images[1]
+            })
 
-            .style("fill", "red")
+        // .attr('xlink:href', function (d) { return author.values.images[0] })
 
     }
-    // let filteredBooks = filtered.map(filtered => {
-    //     // console.log(filteredBooks);
-
-    //     return {
-    //         year: books.publication.year,
-    //         author: filteredAuthors,
-    //         gender: books.author.gender,
-    //         pages: books.characteristics.pages
-
-    //     }
-
-    // })
 
     return
 
 
     //Make the SVG
-
-
-
-
-    // const maxValue = d3.max(data)
-    // const minValue = d3.min(data)
-    // // console.log(data);
-
-
-    // // console.log(d.publication);
-
-
-    // const scale = d3.scaleLinear()
-    //     .domain([0, maxValue])
-    //     .range([0, width])
-
-    // const axisGroup = svg.append("g")
-    // const axis = d3.axisBottom()
-    //     .scale(scale)
-    // axisGroup.call(axis)
-
 
 
 })
