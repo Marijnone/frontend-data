@@ -26,7 +26,7 @@ d3.json('./json/data.json').then(function (data) {
 
     const maxYear = d3.max(getYearValue(filtered))
     const minYear = d3.min(getYearValue(filtered))
-
+    //grab min and max years form authord
     function getYearValue(d) {
         let years = []
         d.map(d => {
@@ -86,12 +86,13 @@ d3.json('./json/data.json').then(function (data) {
         .scale(scale)
         .tickFormat(d3.format("y"))
         .ticks(maxYear - minYear)
-        .tickSize(-height)
+        .tickSize(-300)
 
 
     svg.append("g")
         .attr("class", "grid")
         .call(gridlines)
+        .attr('transform', 'translate(0,' + (height - 300) + ')')
         .selectAll("text")
         .style("display", "none")
 
