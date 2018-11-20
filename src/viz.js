@@ -41,7 +41,7 @@ d3.json('./json/data.json').then(function (data) {
         return years
     }
 
-    console.log(maxYear, minYear)
+    // console.log(maxYear, minYear)
 
     // console.log(minYear)
     // const minYear = (filtered, d => d.values.length <= 1 ?  d.values[0].publication.year :  d.values.map(books> books.publication.year))
@@ -51,7 +51,7 @@ d3.json('./json/data.json').then(function (data) {
     var margin = {
         top: 80,
         right: 50,
-        bottom: 80,
+        bottom: 100,
         left: 50
     }
 
@@ -65,36 +65,35 @@ d3.json('./json/data.json').then(function (data) {
     svg
         .attr('width', width)
         .attr('height', height)
-        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.right + ')')
 
 
     var scale = d3.scaleLinear() // v4
         .domain([minYear, maxYear])
         .range([0, width])
     // clipped
-    var axisGroup = svg.append("g");
+    var axisGroup = svg.append("g").attr('transform', 'translate(0,' + (height + 4) + ')')
+
+
     var axis = d3.axisBottom() // v4
         .scale(scale)
-        .tickFormat(d3.format('y'))
+        .tickFormat(d3.format("y"))
         .ticks(maxYear - minYear)
     axisGroup.call(axis)
 
-    // svg.selectAll("rects")
-    //     .data(filtered)
-    //     .enter()
-    //     .append("rect")
-    //     .attr("width", 15)
-    //     .attr("height", 15)
-    //     .attr("y", -15)
-    //     .attr("x", book =>
-    //         // book.values.length <= 1 ? scale(book.values[0].publication.year) : book.values.map(books => scale(books.publication.year))
-    //         book.values ? scale(book.values[0].publication.year) : console.log("This book has no value: ", book)
-    //     )
-    //     .style("fill", "red")
-
-    //Make y lines to plot books to
+    // Gridline
+    const gridlines = d3.axisTop()
+        .scale(scale)
+        .tickFormat(d3.format("y"))
+        .ticks(maxYear - minYear)
+        .tickSize(-height)
 
 
+    svg.append("g")
+        .attr("class", "grid")
+        .call(gridlines)
+        .selectAll("text")
+        .style("display", "none")
 
     filtered.forEach((author, index) => {
         plotValues(author, index)
@@ -102,7 +101,7 @@ d3.json('./json/data.json').then(function (data) {
 
         } else {
             svg.append("g")
-                .attr('transform', 'translate(0,' + ((index * 100) + 5) + ')')
+                .attr('transform', 'translate(0,' + (height - (index * 100)) + ')')
                 .call(d3.axisBottom() // v4
                     .scale(scale)
                     .ticks(0)
@@ -112,17 +111,17 @@ d3.json('./json/data.json').then(function (data) {
     })
 
     function plotValues(author, index) {
-        console.log(author.values)
+        // console.log(author.values)
 
         svg.selectAll("rects")
             .data(author.values)
             .enter()
             .append("rect")
             .attr("width", 15)
-            .attr("height", 15)
-            .attr("y", (-10 + (index * 100)))
+            .attr("height", 20)
+            .attr("y", ((height - (index * 100))))
             .attr("x", book => {
-                console.log(book.publication.year)
+                // console.log(book.publication.year)
                 return scale(book.publication.year)
             }
             )
