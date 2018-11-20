@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:800');
 
 body {
-    background: #d9f4fd;
+    background: #FBE9D9;
     margin: 0;
 }
 
 h1,
 h2 {
     font-family: 'Raleway';
-    color: black;
+    color: #04238D;
 }
 
 p {

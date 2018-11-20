@@ -1,6 +1,6 @@
 d3.json('./json/data.json').then(function (data) {
 
-    var speceficAuthors = ["Charles Dickons", "Mark Twain", "Stephen King", "Dan Brown", "Stieg Larsson"]
+    var speceficAuthors = ["Charles Dickons", "Mark Twain", "Stephen King", "Dan Brown", "William Shakespeare"]
 
 
     const lessBooks = d3.shuffle(data).slice(0, 15)
@@ -81,7 +81,7 @@ d3.json('./json/data.json').then(function (data) {
         .ticks(maxYear - minYear)
     axisGroup.call(axis)
 
-    // Gridline 
+    // Gridlines
     const gridlines = d3.axisTop()
         .scale(scale)
         .tickFormat(d3.format("y"))
@@ -95,6 +95,14 @@ d3.json('./json/data.json').then(function (data) {
         .attr('transform', 'translate(0,' + (height - 300) + ')')
         .selectAll("text")
         .style("display", "none")
+
+
+    // const yAxis = d3.axisLeft()
+    //     .scale(scale)
+    //     .tickFormat()
+    //     .append("g")
+    //     .ticks()
+    //     .attr("class", "Y label")
 
     filtered.forEach((author, index) => {
         plotValues(author, index)
@@ -128,15 +136,23 @@ d3.json('./json/data.json').then(function (data) {
             }
             )
             .attr('xlink:href', d => {
-                console.log(d.images[0])
+                // console.log(d.images[0])
                 return d.images[1]
-            })
+            });
 
-        // .attr('xlink:href', function (d) { return author.values.images[0] })
+
+
 
     }
 
-    return
+
+    //filter function 
+
+    document.querySelector("#author-select").onclick = function () {
+        console.log("Hi");
+    }
+
+
 
 
     //Make the SVG
