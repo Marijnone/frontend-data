@@ -73,7 +73,8 @@ d3.json('./json/data.json').then(function (data) {
     }
 
     const width = window.innerWidth - margin.left - margin.right
-    const height = window.innerHeight - margin.top - margin.bottom
+    // const height = window.innerHeight - margin.top - margin.bottom
+    height = 400
 
     d3.select("body")
         .append("svg")
@@ -113,14 +114,6 @@ d3.json('./json/data.json').then(function (data) {
         .selectAll("text")
         .style("display", "none")
 
-
-    // const yAxis = d3.axisLeft()
-    //     .scale(scale)
-    //     .tickFormat()
-    //     .append("g")
-    //     .ticks()
-    //     .attr("class", "Y label")
-
     filtered.forEach((author, index) => {
         plotValues(author, index)
         if (index === 0) {
@@ -137,9 +130,6 @@ d3.json('./json/data.json').then(function (data) {
     })
 
     function plotValues(author, index) {
-        // console.log(author)
-
-
 
         svg.append("g")
             .attr("class", author.key.replace(" ", "") + " invisible")
@@ -163,26 +153,5 @@ d3.json('./json/data.json').then(function (data) {
 
 
     }
-
-
-    //filter function 
-
-
-    //     var selectedAuthor = e.options[e.selectedIndex].value
-    //     console.log(selectedAuthor);
-    // }
-    // var e = document.getElementById("#author-select");
-    // var value = e.options[e.selectedIndex].value;
-    // var text = e.options[e.selectedIndex].text;
-    // console.log(e);
-    // console.log(text);
-
-
-
-
-
-
-    //Make the SVG
-
 
 })

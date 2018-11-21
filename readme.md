@@ -12,6 +12,20 @@ Where people can click on an author and see their live timeline. On the x it plo
 ![Wireframe](./img/wireframe.png "Wireframe")
 
 
+Stappen what to dooooo
+
+maak een lijst met de authors die ik wil laten zien 
+
+Elke author moet aan en uitzet baar gemaakt worden
+
+plot de tijdlijn van elke author
+
+link elk item in de lijst van authors met het aan en uitzetten van de tijdlijn per author
+
+maak de g class van de geselecteerde waarde visable
+
+
+
 
 
 ### Resources
