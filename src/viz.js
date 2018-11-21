@@ -7,6 +7,8 @@ d3.json('./json/data.json').then(function (data) {
         const input = document.createElement("input")
         input.type = "checkbox"
         const label = document.createElement("label")
+        const div = document.createElement("div")
+        label.append(div)
 
         label.append(input)
         label.append(document.createTextNode(author))
@@ -15,12 +17,11 @@ d3.json('./json/data.json').then(function (data) {
 
     document.querySelectorAll(".authors > label").forEach(label => {
         const className = label.innerText.replace(" ", "")
-        label.onclick = function () {
+        label.onchange = function () {
+
             document.querySelector("." + className).classList.toggle("invisible")
         }
     })
-
-    const lessBooks = d3.shuffle(data).slice(0, 15)
 
 
     const filteredByAuthors = d3.nest().key(book => {
@@ -74,7 +75,7 @@ d3.json('./json/data.json').then(function (data) {
 
     const width = window.innerWidth - margin.left - margin.right
     // const height = window.innerHeight - margin.top - margin.bottom
-    height = 400
+    height = 260
 
     d3.select("body")
         .append("svg")
@@ -142,15 +143,13 @@ d3.json('./json/data.json').then(function (data) {
             .attr("y", ((height - (index * 100 + 50))))
             .attr("x", book => {
                 // console.log(book.publication.year)
-                return scale(book.publication.year) - 6
+                return scale(book.publication.year) - 7 //small offset
             }
             )
             .attr('xlink:href', d => {
                 // console.log(d.images[0])
                 return d.images[1]
             });
-
-
 
     }
 
