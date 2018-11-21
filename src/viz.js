@@ -1,7 +1,24 @@
 d3.json('./json/data.json').then(function (data) {
 
-    var speceficAuthors = ["Charles Dickons", "Mark Twain", "Stephen King", "Dan Brown", "William Shakespeare"]
 
+    var speceficAuthors = ["Mark Twain", "Stephen King", "Dan Brown", "William Shakespeare"]
+
+    speceficAuthors.forEach(author => {
+        const input = document.createElement("input")
+        input.type = "checkbox"
+        const label = document.createElement("label")
+
+        label.append(input)
+        label.append(document.createTextNode(author))
+        document.querySelector(".authors").append(label)
+    })
+
+    document.querySelectorAll(".authors > label").forEach(label => {
+        const className = label.innerText.replace(" ", "")
+        label.onclick = function () {
+            document.querySelector("." + className).classList.toggle("invisible")
+        }
+    })
 
     const lessBooks = d3.shuffle(data).slice(0, 15)
 
@@ -120,10 +137,13 @@ d3.json('./json/data.json').then(function (data) {
     })
 
     function plotValues(author, index) {
-        // console.log(author.values)
+        // console.log(author)
 
 
-        svg.selectAll("rects")
+
+        svg.append("g")
+            .attr("class", author.key.replace(" ", "") + " invisible")
+            .selectAll("image")
             .data(author.values)
             .enter()
             .append("svg:image")
@@ -132,7 +152,7 @@ d3.json('./json/data.json').then(function (data) {
             .attr("y", ((height - (index * 100 + 50))))
             .attr("x", book => {
                 // console.log(book.publication.year)
-                return scale(book.publication.year)
+                return scale(book.publication.year) - 6
             }
             )
             .attr('xlink:href', d => {
@@ -142,15 +162,22 @@ d3.json('./json/data.json').then(function (data) {
 
 
 
-
     }
 
 
     //filter function 
 
-    document.querySelector("#author-select").onclick = function () {
-        console.log("Hi");
-    }
+
+    //     var selectedAuthor = e.options[e.selectedIndex].value
+    //     console.log(selectedAuthor);
+    // }
+    // var e = document.getElementById("#author-select");
+    // var value = e.options[e.selectedIndex].value;
+    // var text = e.options[e.selectedIndex].text;
+    // console.log(e);
+    // console.log(text);
+
+
 
 
 

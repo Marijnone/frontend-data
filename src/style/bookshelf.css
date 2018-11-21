@@ -15,12 +15,13 @@ p {
     font-family: system-ui;
 }
 
-.shelf {
-    position: absolute;
-    top: 13.5em;
-    fill: white;
-}
+
 
 svg {
     overflow: visible;
 }
+
+.invisible{
+    display: none;
+}
+
