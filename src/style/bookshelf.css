@@ -31,11 +31,6 @@ input[type="checkbox"] {
     transform: scale(1.1); 
 }
 
-.authors div:checked + label{
-    background-color: aqua;
-    height: 4em;
-}
-
 .authors{
     border-width: 0px 0px 0px 0px;
     border-color: rgba(4, 35, 141, 1);
@@ -103,7 +98,7 @@ input[type="checkbox"] {
 
 .checked{
     border-style: solid;
-    color: red;
+    color: #04238D
     
 }
 svg {

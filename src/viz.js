@@ -19,38 +19,15 @@ d3.json('./json/data.json').then(function (data) {
         const className = label.innerText.replace(" ", "")
         label.onchange = function (event) {
             // console.log(event)
-
             event.srcElement.parentElement.children[0].classList.toggle("checked")
 
             document.querySelector("." + className).classList.toggle("invisible")
 
             var images = document.querySelectorAll(".image")
-            // var noElems = document.querySelectorAll('.these-elements-do-not-exist');
-            // Logs []
-            // console.log(images);
 
-            // // No errors
-            // images.forEach(function (image, index) {
-            //     image.classList.toggle('checked');
-            // });
 
         }
     })
-
-    // document.addEventListener('DOMContentLoaded', function () {
-    //     document.querySelectorAll('input[type="checkbox"]').click = changeEventHandler;
-    // }, false);
-
-    // function changeEventHandler(event) {
-    //     // You can use “this” to refer to the selected element.
-    //     console.log("hi");
-
-    //     if (!event.target.value) alert('Please Select One');
-    //     else alert('You like ' + event.target.value + ' ice cream.');
-    // }
-
-
-    //Lets filter out the authors from the specific author array
     const filteredByAuthors = d3.nest().key(book => {
         return book.author.fullname
     }).entries(data)
@@ -124,8 +101,6 @@ d3.json('./json/data.json').then(function (data) {
         .style("text-anchor", "middle")
         .text("Jaren");
 
-
-
     // Gridlines
     const gridlines = d3.axisTop()
         .scale(scale)
@@ -137,7 +112,6 @@ d3.json('./json/data.json').then(function (data) {
         .attr("class", "grid")
         .call(gridlines)
         .attr('transform', 'translate(0,' + (height - 300) + ')')
-        // .attr(height, )
         .selectAll("text")
         .style("display", "none")
 
@@ -157,7 +131,7 @@ d3.json('./json/data.json').then(function (data) {
     })
 
     function plotValues(author, index) {
-        ////Tooltip from udemy
+        ////Tooltip from udemy has to be here
         // console.log(author);
 
         const tip = d3.tip().attr('class', 'd3-tip')
@@ -170,6 +144,7 @@ d3.json('./json/data.json').then(function (data) {
                 text += "<strong>Publicatie Jaar:</strong> <span style='color:black'>" + d.publication.year + "</span><br>";
                 return text;
             })
+
         svg.call(tip)
 
         svg.append("g")
