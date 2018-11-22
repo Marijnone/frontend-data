@@ -1,33 +1,50 @@
 # Front-end data
 
-### Concepts & Sketches
+### Concepts & Sketches 💭
 
-A timeline chart 
+My initial idea was to create a timeline chart 
+Where people can click on an author and see their live timeline. On the x it plots their books and their life events like their first child or the year they we're born. On the y it plots the authors face so you can easily see who's timeline you're looking at.
 
-Where people can click on an author and see their live timeline. On the x it plots their books and their lifecycle. On the y it plots the authors
+
+This was the first sketch 
 
 ![Wireframe](./img/sketch.jpg "Sketch")
 
 
+And a more designed wireframe
+
 ![Wireframe](./img/wireframe.png "Wireframe")
 
+### Process
 
-Stappen what to dooooo
+For me D3 had a very high learning curve i still find some concepts pretty complex. The first challenges was to create an chart that looked like a timechart. Where the x line would have the years this is a quite common chart so making this was not so hard. But a mistake i often make is to not write out the process of what needs to happen. This resulted in being stuck on building the grid to plot the books on. After asking for help i with some help started to build a function that filters the books from the authors inside of the specific authors array. And then plots the books on the correct year. After that i needed a function that displays the correct books when the author is clicked. To do this i wrote down the steps needed to accomplish this:
 
-maak een lijst met de authors die ik wil laten zien 
+Stappen what to do (dutch)
 
-Elke author moet aan en uitzet baar gemaakt worden
+- Maak een lijst met de authors die ik wil laten zien 
 
-plot de tijdlijn van elke author
+- Elke author moet aan en uitzet baar gemaakt worden
 
-link elk item in de lijst van authors met het aan en uitzetten van de tijdlijn per author
+- Plot de tijdlijn van elke author
 
-maak de g class van de geselecteerde waarde visable
+- Link elk item in de lijst van authors met het aan en uitzetten van de tijdlijn per author
+
+- Maak de g class van de geselecteerde waarde visable
+
+### Challenges ⚔
+
+When i started to sketch this idea i never thought it would be so hard to realize this in code. This is something that i always find hard because you want to build something that you find cool and interesting. But at the end it need to be accomplished, i think this has to do with the lack of experience and probably skill. But after all the headache and frustration its gives a great feeling when it finally works 😁. Its not finished but still i came a long way.
 
 
+### To do's 📜 
+
+- I wanted to add a feature that people can type in their favorite author push this to the array. And then plot the author to the timeline.
+- One of the features that the initial idea had was showing life events of the author i've got started with. [Wikijs](https://www.npmjs.com/package/wikijs) but did not managed to implement it on time. 
 
 
 
 ### Resources
+
 https://stackoverflow.com/questions/14567809/how-to-add-an-image-to-an-svg-container-using-d3-js
+
 https://jsfiddle.net/q51ok9jc/46/

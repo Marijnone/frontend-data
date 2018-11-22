@@ -7,6 +7,7 @@ d3.json('./json/data.json').then(function (data) {
         input.type = "checkbox"
         const label = document.createElement("label")
         const div = document.createElement("div")
+        div.setAttribute("class", "image")
         label.append(div)
 
         label.append(input)
@@ -16,12 +17,40 @@ d3.json('./json/data.json').then(function (data) {
 
     document.querySelectorAll(".authors > label").forEach(label => {
         const className = label.innerText.replace(" ", "")
-        label.onchange = function () {
+        label.onchange = function (event) {
+            // console.log(event)
+
+            event.srcElement.parentElement.children[0].classList.toggle("checked")
 
             document.querySelector("." + className).classList.toggle("invisible")
+
+            var images = document.querySelectorAll(".image")
+            // var noElems = document.querySelectorAll('.these-elements-do-not-exist');
+            // Logs []
+            // console.log(images);
+
+            // // No errors
+            // images.forEach(function (image, index) {
+            //     image.classList.toggle('checked');
+            // });
+
         }
     })
 
+    // document.addEventListener('DOMContentLoaded', function () {
+    //     document.querySelectorAll('input[type="checkbox"]').click = changeEventHandler;
+    // }, false);
+
+    // function changeEventHandler(event) {
+    //     // You can use “this” to refer to the selected element.
+    //     console.log("hi");
+
+    //     if (!event.target.value) alert('Please Select One');
+    //     else alert('You like ' + event.target.value + ' ice cream.');
+    // }
+
+
+    //Lets filter out the authors from the specific author array
     const filteredByAuthors = d3.nest().key(book => {
         return book.author.fullname
     }).entries(data)
@@ -31,17 +60,15 @@ d3.json('./json/data.json').then(function (data) {
             console.log('GEVONDEN')
             return {
                 author
-
             }
         }
         return
     })
     console.log(filtered);
 
-
+    //create the correct min and max year
     const maxYear = d3.max(getYearValue(filtered))
     const minYear = d3.min(getYearValue(filtered))
-    //grab min and max years form authors to create the timeline
     function getYearValue(d) {
         let years = []
         d.map(d => {
@@ -91,6 +118,14 @@ d3.json('./json/data.json').then(function (data) {
         .ticks(maxYear - minYear)
     axisGroup.call(axis)
 
+    svg.append("text")
+        .attr("x", 800)
+        .attr("y", 310)
+        .style("text-anchor", "middle")
+        .text("Jaren");
+
+
+
     // Gridlines
     const gridlines = d3.axisTop()
         .scale(scale)
@@ -120,7 +155,6 @@ d3.json('./json/data.json').then(function (data) {
         }
 
     })
-
 
     function plotValues(author, index) {
         ////Tooltip from udemy
