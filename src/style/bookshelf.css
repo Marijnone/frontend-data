@@ -69,7 +69,7 @@ input[type="checkbox"] {
 .authors label:nth-of-type(2) div{
     display: flex;
     align-items: center;
-    background:url(/frontend-data/src/img/stephenking.jpg) no-repeat center -7rem;
+    background:url(./frontend-data/src/img/stephenking.jpg) no-repeat center -7rem;
     border-radius: 50%;
     width: 5em;
     height: 5em;
@@ -79,7 +79,7 @@ input[type="checkbox"] {
 .authors label:nth-of-type(3) div{
     display: flex;
     align-items: center;
-    background:url(/frontend-data/src/img/danbrown.jpg) no-repeat center -2rem;
+    background:url(./frontend-data/src/img/danbrown.jpg) no-repeat center -2rem;
     border-radius: 50%;
     width: 5em;
     height: 5em;
@@ -88,7 +88,7 @@ input[type="checkbox"] {
 .authors label:nth-of-type(4) div{
     display: flex;
     align-items: center;
-    background:url(/frontend-data/src/img/Amiller.jpg) no-repeat center -2em;
+    background:url(./frontend-data/src/img/Amiller.jpg) no-repeat center -2em;
     border-radius: 50%;
     width: 5em;
     height: 5em;
