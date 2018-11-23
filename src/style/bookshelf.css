@@ -60,7 +60,7 @@ input[type="checkbox"] {
 .authors label:first-of-type div{
     display: flex;
     align-items: center;
-    background:url(./img/marktwain.jpg) no-repeat center -6rem;
+    background:url(/img/marktwain.jpg) no-repeat center -6rem;
     border-radius: 50%;
     width: 5em;
     height: 5em;
