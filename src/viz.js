@@ -1,6 +1,6 @@
 d3.json('./json/data.json').then(function (data) {
 
-    var speceficAuthors = ["Mark Twain", "Stephen King", "Dan Brown", "William Shakespeare"]
+    var speceficAuthors = ["Mark Twain", "Stephen King", "Dan Brown", "Arthur Miller"]
 
     speceficAuthors.forEach(author => {
         const input = document.createElement("input")
@@ -28,6 +28,7 @@ d3.json('./json/data.json').then(function (data) {
 
         }
     })
+    //Filter the authors
     const filteredByAuthors = d3.nest().key(book => {
         return book.author.fullname
     }).entries(data)
@@ -43,7 +44,7 @@ d3.json('./json/data.json').then(function (data) {
     })
     console.log(filtered);
 
-    //create the correct min and max year
+    //create the correct min and max year 
     const maxYear = d3.max(getYearValue(filtered))
     const minYear = d3.min(getYearValue(filtered))
     function getYearValue(d) {
@@ -64,13 +65,11 @@ d3.json('./json/data.json').then(function (data) {
         top: 80,
         right: 50,
         bottom: 100,
-        left: 80
+        left: 50
     }
 
     const width = window.innerWidth - margin.left - margin.right
-    // const height = window.innerHeight - margin.top - margin.bottom
-    height = 260
-
+    height = 300
     d3.select("body")
         .append("svg")
     const svg = d3.select('svg')
@@ -97,7 +96,7 @@ d3.json('./json/data.json').then(function (data) {
 
     svg.append("text")
         .attr("x", 800)
-        .attr("y", 310)
+        .attr("y", 350)
         .style("text-anchor", "middle")
         .text("Jaren");
 
@@ -118,7 +117,7 @@ d3.json('./json/data.json').then(function (data) {
     filtered.forEach((author, index) => {
         plotValues(author, index)
         if (index === 0) {
-            //for each author plot the books
+            //for each author plot the books //thanks to Dennis for the help
         } else {
             svg.append("g")
                 .attr('transform', 'translate(0,' + (height - (index * 100)) + ')')
@@ -164,10 +163,7 @@ d3.json('./json/data.json').then(function (data) {
             }
             )
             .attr('xlink:href', d => {
-                // console.log(d.images[0])
                 return d.images[1]
             });
-
     }
-
 })
