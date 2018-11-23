@@ -2,11 +2,11 @@
     line-height: 1;
     font-weight: bold;
     padding: 12px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
+    background: #FEFBF7;
+    color: #04238D;
     border-radius: 2px;
     pointer-events: none;
-    font-family: system-ui;
+    font-family: Roboto;
 }
 
 /* Creates a small triangle extender for the tooltip */

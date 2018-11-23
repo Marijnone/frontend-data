@@ -1,21 +1,112 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:800');
 
 body {
-    background: #d9f4fd;
+    background: #FBE9D9;
+    margin: 0;
 }
 
 h1,
 h2 {
-    font-family: 'Raleway';
-    color: black;
+    font-family: 'Bodoni MT';
+    color: #04238D;
+    font-size:4em;
+}
+
+h2{
+    font-size: 2em;
 }
 
 p {
     font-family: system-ui;
 }
 
-.shelf {
-    position: absolute;
-    top: 13.5em;
-    fill: white;
+input[type="checkbox"] {
+    display: none;   
 }
+
+
+.authors div{
+     transition: all .2s ease-in-out;
+}
+.authors div:hover{
+    transform: scale(1.1); 
+}
+
+.authors{
+    border-width: 0px 0px 0px 0px;
+    border-color: rgba(4, 35, 141, 1);
+    background-color:#FEFBF7;
+    border-radius: 12px;
+    border-style: solid;
+    box-shadow: 0px 3px 4px 0px rgba(187, 187, 187, 1);
+    border-style: solid;
+    box-shadow: 0px 6px 12px 3px rgba(187, 187, 187, 0.2);
+    display: flex;
+    position: relative;
+    width: 40em;
+    padding: 2em;
+    height: 5em;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.authors label{
+    font-family: Roboto;
+    text-align: center;
+    /* word-break: keep-all; */
+    white-space: pre-wrap;
+}
+
+
+.authors label:first-of-type div{
+    display: flex;
+    align-items: center;
+    background:url(/Frontend-data/frontend-data/src/img/marktwain.jpg) no-repeat center -6rem;
+    border-radius: 50%;
+    width: 5em;
+    height: 5em;
+    /* object-fit: scale-down; */
+}
+.authors label:nth-of-type(2) div{
+    display: flex;
+    align-items: center;
+    background:url(/Frontend-data/frontend-data/src/img/stephenking.jpg) no-repeat center -7rem;
+    border-radius: 50%;
+    width: 5em;
+    height: 5em;
+    /* object-fit: contain; */
+}
+
+.authors label:nth-of-type(3) div{
+    display: flex;
+    align-items: center;
+    background:url(/Frontend-data/frontend-data/src/img/danbrown.jpg) no-repeat center -2rem;
+    border-radius: 50%;
+    width: 5em;
+    height: 5em;
+    object-fit: contain;
+}
+.authors label:nth-of-type(4) div{
+    display: flex;
+    align-items: center;
+    background:url(/Frontend-data/frontend-data/src/img/williamshakespeare.jpg) no-repeat center -3rem;
+    border-radius: 50%;
+    width: 5em;
+    height: 5em;
+    object-fit: scale-down;
+    /* object-position: 50% 50%; */
+}
+
+.checked{
+    border-style: solid;
+    color: #04238D
+    
+}
+svg {
+    overflow: visible;
+}
+.invisible{
+    display: none;
+}
+
+
+
